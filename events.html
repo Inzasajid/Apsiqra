@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APS | Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/Aps_Logo_1x1_small.png">
+    <link href='https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+    <style>
+        /* Custom Styles */
+        body { 
+            font-family: 'Oxygen', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f5f5f5;
+        }
+
+/* Header Styles */
+.header {
+    background: linear-gradient(135deg, #3eaf47, #034d00); /* Trendy gradient background */
+    color: #ffffff;
+    padding: 30px 40px; /* Generous padding for spacing */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Soft, elegant shadow */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease; /* Smooth transitions */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(12px); /* Frosted glass effect for modern touch */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for separation */
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+}
+
+.header.scrolled {
+    background: linear-gradient(135deg, #4ed17abe, #20be55); /* Darker gradient on scroll */
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2); /* Deeper shadow on scroll */
+}
+
+.logo-name h5, .logo-name h6 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Sleek, modern font */
+    font-weight: 700; /* Bold for prominence */
+    letter-spacing: 1px; /* Slightly spaced for readability */
+    font-size: 1.3em; /* Larger font size for impact */
+}
+
+.navbar-nav {
+    display: flex; /* Horizontal layout for nav items */
+    gap: 20px; /* Space between items */
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif; /* Consistent modern font */
+    text-transform: uppercase; /* Capitalized for a clean look */
+    padding: 10px 20px; /* Adequate padding for easy clicking */
+    border-radius: 5px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transitions */
+    position: relative; /* For pseudo-element positioning */
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: #48c563; /* Accent color */
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom right;
+}
+
+.navbar-nav .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.navbar-toggler {
+    border: none; /* Remove default border */
+    background: transparent; /* Transparent background */
+    padding: 0; /* Remove padding */
+    cursor: pointer; /* Pointer cursor */
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath stroke="%23ffffff" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /%3E%3C/svg%3E');
+    width: 24px; /* Icon width */
+    height: 24px; /* Icon height */
+    transition: transform 0.3s ease; /* Smooth transition for toggler */
+}
+
+.navbar-toggler:hover .navbar-toggler-icon {
+    transform: rotate(90deg); /* Rotate icon on hover */
+}
+
+.dropdown-menu {
+    background: rgba(87, 189, 78, 0.9); /* Slightly darker background */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 8px 24px rgba(107, 228, 158, 0.678); /* Enhanced shadow */
+    backdrop-filter: blur(12px); /* Frosted glass effect */
+    padding: 10px 0; /* Padding for dropdown items */
+}
+
+.dropdown-item {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    padding: 12px 20px; /* Adequate padding */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.dropdown-item:hover {
+    background: rgba(0, 255, 255, 0.1); /* Subtle hover background */
+    transform: translateX(5px); /* Slight shift on hover */
+}
+
+/* Additional Styles */
+.header .logo-name {
+    display: flex;
+    align-items: left;
+    gap: 10px;
+}
+
+.header .logo-name img {
+    height: 180px; /* Adjust logo size */
+    width: 70px; /* Maintain aspect ratio */
+}
+
+
+
+        .footer {
+    margin-top: 100px;
+    background-color: #004d00; /* Dark green background */
+    color: #ffffff; /* White text */
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-info, .footer-navigation, .footer-contact, .footer-social {
+    flex: 1;
+    margin: 10px;
+    min-width: 220px;
+}
+
+.footer-info h5, .footer-navigation h3, .footer-contact h3, .footer-social h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.footer-info address, .footer-contact form {
+    font-size: 12px;
+}
+
+.footer-info address p {
+    margin: 5px 0;
+}
+
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-navigation ul li {
+    margin: 8px 0;
+}
+
+.footer-navigation ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-navigation ul li a:hover {
+    text-decoration: underline;
+}
+
+.contact-form label {
+    display: block;
+    margin: 5px 0;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #004d00;
+}
+
+.contact-form button {
+    background-color: #ffffff;
+    color: #004d00;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.contact-form button:hover {
+    background-color: #d4d4d4;
+}
+.footer-social ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-social ul li {
+    margin: 0 10px;
+}
+
+.social-icon {
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #d4d4d4; /* Light grey on hover */
+}
+
+    </style>
+
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body id="home">
+    <!-- Header and Navigation -->
+    <header class="header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo-name d-flex align-items-center">
+                <a href="index.html" title="Home">
+                    <img src="img/Aps_Logo_1x1_small.png" alt="Logo" class="img-fluid" style="height: 50px;">
+                </a>
+                <div class="ml-3">
+                    <a href="index.html" title="Home" class="text-white">
+                        <h5 class="mb-0 font-weight-bold">Army Public School and College (Iqra)</h5>
+                        <h6 class="text-light mb-0">Risalpur Cantt</h6>
+                    </a>
+                </div>
+            </div>
+            
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <!-- Home Link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Institute
+                            </a>
+                            <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="about.html">About</a>
+                                <a class="dropdown-item" href="wings.html">Wings</a>
+                                <a class="dropdown-item" href="facilities.html">Facilities</a>
+                                <a class="dropdown-item" href="vision.html">Vision</a>
+                                <a class="dropdown-item" href="mission.html">Mission</a>
+                                <a class="dropdown-item" href="organogram.html">Organogram</a>
+                             
+                            </div>
+                        </li>
+                        
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               Student
+                            </a>
+                            <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="books.html">Books</a>
+                                <a class="dropdown-item" href="uniforms.html">Uniforms</a>
+                                <a class="dropdown-item" href="school_policies.html">School Policies</a>
+                                
+                            </div>
+                        </li>
+                        
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmission" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Information
+                            </a>
+                            <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdownAdmission">
+                                <a class="dropdown-item" href="admission.html">Admissions</a>
+                                <a class="dropdown-item" href="feevoucher.html">Fee Voucher</a>
+                                <a class="dropdown-item" href="Curriculumplanninganddevelopment.html">Curriculum Planning and Development</a>
+                                <a class="dropdown-item" href="Assessmentandexamination.html">Assessment and Examination</a>
+                                
+                            </div>
+                        </li>
+                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                More
+                            </a>
+                            <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdownMore">
+                                <a class="dropdown-item" href="news.html">News</a>
+                                <a class="dropdown-item" href="faculty.html">Faculty</a>
+                                <a class="dropdown-item" href="events.html">Events</a>
+                                <a class="dropdown-item" href="gallery.html">Gallery</a>
+                                <a class="dropdown-item" href="contact.html">Contact</a>
+                               
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                </nav>
+                </div>
+                </header>
+            
+    
+
+    <iframe src="img/Upcoming.pdf" width="100%" height="600px" style="border: none;">
+        This browser does not support PDFs. Please download the PDF to view it: <a href="path-to-your-file.pdf">Download PDF</a>.
+    </iframe>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h5>&copy; 2024 Army Public School and College. All Rights Reserved.</h5>
+                <address>
+                    <p><strong>Address:</strong>Nawazish Road Risalpur Cantt, KPK, Pakistan</p>
+                    <p><strong>Phone:</strong> 0348 9038590</p>
+                    <p><strong>Hours:</strong></p>
+                    <ul><li><strong>Monday:</strong> 08:00 - 14:00</li>
+                    <li><strong>Tuesday:</strong> 08:00 - 14:00</li>
+                    <li><strong>Wednesday:</strong> 08:00 - 14:00</li>
+                    <li><strong>Thursday:</strong> 08:00 - 14:00</li>
+                    <li><strong>Friday:</strong> 08:00 - 12:30</li></ul>
+
+                </address>
+            </div>
+            <div class="footer-navigation">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="faculty.html">Faculty</a></li>
+                    
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="Assessmentandexamination.html">Assessment</a></li>
+                    
+                    <li><a href="Assessmentandexamination.html">Examination</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <form action="#" method="post" class="contact-form">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <ul class="social-icons">
+                    <li><a href="https://www.facebook.com" aria-label="Facebook" class="social-icon"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.twitter.com" aria-label="Twitter" class="social-icon"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://www.linkedin.com" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+
+
+
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Slick Slideshow Initialization
+        $(document).ready(function(){
+            $('.slideshow').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear'
+            });
+        });
+    </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.zoom = "85%";
+        });
+    </script>
+</body>
+</html>
